@@ -1,10 +1,18 @@
 import sys
+import shutil
 import fitz
+import shlex
+import ghostscript
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QFileDialog
 from PyQt5.QtGui import QImage, QPixmap
 
 from mouse_drag import MyWidget
 
+# destructive crop pdf by ghost script: https://stackoverflow.com/questions/457207/cropping-pages-of-a-pdf-file#comment95568261_465901
+def destructive_crop(file_path):
+    command = f'gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile={file_path}.pdf {file_path}'
+    ghostscript.Ghostscript(*shlex.split(command))
+    shutil.move(f'{file_path}.pdf', file_path)
 
 class LaWidget(QWidget):
     def __init__(self):
@@ -38,10 +46,11 @@ class LaWidget(QWidget):
         if ex - sx > 10 and ey - sy > 10:
             for number_of_page in range(self.doc.page_count):
                 page = self.doc.load_page(number_of_page)
-                page.set_cropbox(fitz.Rect(sx, sy, ex, ey))
+                page.set_mediabox(fitz.Rect(sx, sy, ex, ey))
             fileName, _ = QFileDialog.getSaveFileName(self,"Save to Pdf","","Pdf Files (*.pdf)")
             if fileName:
                 self.doc.save(fileName)
+                destructive_crop(fileName)
         
 
 if __name__ == '__main__':
