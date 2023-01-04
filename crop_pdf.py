@@ -35,12 +35,13 @@ class LaWidget(QWidget):
         self.mylabel.sig_mouse_released[int, int, int, int].connect(self.crop_all_pages)
     
     def crop_all_pages(self, sx, sy, ex, ey):
-        for number_of_page in range(self.doc.page_count):
-            page = self.doc.load_page(number_of_page)
-            page.set_cropbox(fitz.Rect(sx, sy, ex, ey))
-        fileName, _ = QFileDialog.getSaveFileName(self,"Save to Pdf","","Pdf Files (*.pdf)")
-        if fileName:
-            self.doc.save(fileName)
+        if ex - sx > 10 and ey - sy > 10:
+            for number_of_page in range(self.doc.page_count):
+                page = self.doc.load_page(number_of_page)
+                page.set_cropbox(fitz.Rect(sx, sy, ex, ey))
+            fileName, _ = QFileDialog.getSaveFileName(self,"Save to Pdf","","Pdf Files (*.pdf)")
+            if fileName:
+                self.doc.save(fileName)
         
 
 if __name__ == '__main__':
