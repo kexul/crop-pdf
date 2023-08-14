@@ -1,9 +1,12 @@
-# Crop pdf
- Small pyqt application to crop the margins of pdf files with 60 lines of code. 
+# pdf tools
+ Small pyqt application to crop the margins or compress the pdf. 
 
 # Usage
+## Crop PDF
 1. `python crop_pdf.py`, an open file dialog will prompt. 
 2. Select the area you'd prefer to keep, a save file dialog will prompt after mouse release. 
+## Compress PDF
+1. press `Ctrl+P`.
 
 # Screenshot
 ![example](example.gif)
