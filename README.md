@@ -18,3 +18,5 @@
 # Notes
 * All pages in the pdf will be cropped according to the area you selected. 
 * Instead of setting visible area of the pdf, the texts beyond visible area are removed by ghost script.
+* Destructive crop pdf by ghost script: https://stackoverflow.com/questions/457207/cropping-pages-of-a-pdf-file#comment95568261_465901
+* Compress by ghost script: https://gist.github.com/ahmed-musallam/27de7d7c5ac68ecbd1ed65b6b48416f9
