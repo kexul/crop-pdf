@@ -3,10 +3,9 @@
 
 # Usage
 ## Crop PDF
-1. `python crop_pdf.py`, an open file dialog will prompt. 
-2. Select the area you'd prefer to keep, a save file dialog will prompt after mouse release. 
+1. Use Tool -> Crop
 ## Compress PDF
-1. press `Ctrl+P`.
+1. Use Tool -> Compress
 
 # Screenshot
 ![example](example.gif)

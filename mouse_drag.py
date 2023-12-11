@@ -28,6 +28,7 @@ class MyWidget(QLabel):
 
         self.setMouseTracking(True)
         self.free_cursor_on_side = 0
+        self.activate_selection = False
     
 
     def paintEvent(self, event):
@@ -66,6 +67,8 @@ class MyWidget(QLabel):
         return 0
 
     def mousePressEvent(self, event):
+        if not self.activate_selection:
+            return
         side = self.cursor_on_side(event.pos())
         if side == CURSOR_ON_BEGIN_SIDE:
             self.state = BEGIN_SIDE_EDIT

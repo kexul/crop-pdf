@@ -1,0 +1,1 @@
+pyinstaller crop_pdf.py -w
