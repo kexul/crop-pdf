@@ -18,11 +18,11 @@ class Window(QMainWindow):
         super().__init__()
         self.doc = None
         self.setWindowTitle('Crop PDF')
-        self.mylabel = MyWidget()
+        self.pdfbox = MyWidget()
         self.createActions()
         self.createMenuBar()
-        self.mylabel.sig_mouse_released[int, int, int, int].connect(self.crop_all_pages)
-        self.setCentralWidget(self.mylabel)
+        self.pdfbox.sig_mouse_released[int, int, int, int].connect(self.crop_all_pages)
+        self.setCentralWidget(self.pdfbox)
     
 
     def createActions(self):
@@ -62,7 +62,7 @@ class Window(QMainWindow):
             # set the correct QImage format depending on alpha
             fmt = QImage.Format_RGBA8888 if pix.alpha else QImage.Format_RGB888
             qtimg = QImage(pix.samples_ptr, pix.width, pix.height, fmt)
-            self.mylabel.setPixmap(QPixmap.fromImage(qtimg))
+            self.pdfbox.setPixmap(QPixmap.fromImage(qtimg))
     
     def crop_all_pages(self, sx, sy, ex, ey):
         if ex - sx > 10 and ey - sy > 10:
@@ -99,7 +99,7 @@ class Window(QMainWindow):
     
     def enable_selection(self):
         if self.doc is not None:
-            self.mylabel.activate_selection = True
+            self.pdfbox.activate_selection = True
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
