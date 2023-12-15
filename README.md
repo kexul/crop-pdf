@@ -1,5 +1,5 @@
-# pdf tools
- Small pyqt application to crop the margins or compress the pdf. 
+# PDF tool
+ Small pyqt application to crop the margins and compress the pdf. 
 
 # Usage
 ## Crop PDF
